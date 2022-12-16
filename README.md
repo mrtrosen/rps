@@ -16,10 +16,11 @@ This is a web based implementation of a two player game of rock, paper, scissors
 - [x] Determine gameplay strategy and document steps
 - [x] Setup django app for RPS views
 - [x] Create Single User Gameplay (Player vs. Computer)
+- [ ] Complete Unit Tests for Single User Gameplay (Player vs. Computer)
 - [ ] Create Player Versus Player Gameplay - 2 Players - Simple Mode (both users on same browser window)
 - [ ] Create Player Versus Player Gameplay - 2 Players - Advanced Mode (Player Invite / Game Code Entry / etc)
 - [ ] Update django models to allow for user game history saving
-- [ ] (Future) Create Player Versus Player Gameplay - 2 Players - Simple Mode (both users on same browser window)
+- [ ] (Future) Create Player Versus Player Gameplay - > 2 Players - Simple Mode (both users on same browser window)
 - [ ] (Future) Create Player Versus Player Gameplay - > 2 Players - Advanced Mode (Player Invite / Game Code Entry / etc)
 
 # Project Thoughts
