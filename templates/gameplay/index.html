@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if not request.user.is_authenticated %}
+  <div class="alert alert-info">
+    You must have an account and be signed in to Rock Paper Scissors prior to playing or creating a new game.
+  </div>
+  {% endif %}
+
+  <h4>What type of game would you like to play?</h4>
+  <h5 class="ms-3">
+    <a href="{% url 'gameplay:new_game' 1 %}">
+      Player Versus Player (PvP)
+    </a>
+  </h5>
+  <h5 class="ms-3">
+    <a href="{% url 'gameplay:new_game' 2 %}">
+      Player Versus Computer (AI)
+    </a>
+  </h5>
+
+  {% if request.user.is_authenticated %}
+    <hr />
+    <h3 class="mb-0">Your Game History</h3>
+    {% if count_past_games == 0 %}
+      <div class="alert alert-info">You have not yet played any games.</div>
+    {% else %}
+      <p>
+        Click on the Created At date/time to view more details on the game.
+      </p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Created At (UTC)</th>
+            <th>Player One</th>
+            <th>Player Two</th>
+            <th>Winner</th>
+            <th>Last Played Turn At (UTC)</th>
+            <th>Game Completed At (UTC)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for game in past_games %}
+            <tr>
+              <td>
+                <a href="{% url 'gameplay:play' game.id %}">
+                  {{ game.created_at }}
+                </a>
+              </td>
+              <td>{{ game.player_one.name }}</td>
+              <td>{{ game.player_two.name|default:"Computer" }}</td>
+              <td>{{ game.game_winner_info.name|default_if_none:"" }}</td>
+              <td>{{ game.modified_at|default_if_none:"" }}</td>
+              <td>{{ game.completed_at|default_if_none:"" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  {% endif %}
+
+{% endblock %}

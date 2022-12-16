@@ -4,8 +4,8 @@
 This is a web based implementation of a two player game of rock, paper, scissors game, based on the following project requirements:
  - Allow two players to enter their names
  - One of the players can also be the computer, i.e. player vs computer
- - Allow each to play a turn, one at a time, during which the player selects one of the option from rock, paper, scissors 
- - During each turn notify who has won and increment the scores 
+ - Allow each to play a turn, one at a time, during which the player selects one of the option from rock, paper, scissors
+ - During each turn notify who has won and increment the scores
  - In addition to implementing basic gameplay, the user must be able to save their game
 
 
@@ -18,13 +18,13 @@ This is a web based implementation of a two player game of rock, paper, scissors
 - [ ] Create Single User Gameplay (Player vs. Computer)
 - [ ] Create Player Versus Player Gameplay - 2 Players - Simple Mode (both users on same browser window)
 - [ ] Create Player Versus Player Gameplay - 2 Players - Advanced Mode (Player Invite / Game Code Entry / etc)
-- [ ] Update django models to allow for user game history saving 
+- [ ] Update django models to allow for user game history saving
 - [ ] (Future) Create Player Versus Player Gameplay - 2 Players - Simple Mode (both users on same browser window)
 - [ ] (Future) Create Player Versus Player Gameplay - > 2 Players - Advanced Mode (Player Invite / Game Code Entry / etc)
 
 
 # Project Thoughts / Considerations
-The game of rock-paper-scissors is a real-time game in which 2 or more users have an option to play either a Rock, Scissors, or Paper.  
+The game of rock-paper-scissors is a real-time game in which 2 or more users have an option to play either a Rock, Scissors, or Paper.
 
 Each option has a set of rules for if that option wins over another player selected option.  These rules are defined as:
  - Rock **beats** Scissor
@@ -41,11 +41,11 @@ If all players choose the same option during the same round that round is determ
 
 # Project Layout
 This project utilizes Python and Django utilizing the [https://cookiecutter-django.readthedocs.io/en/latest/index.html](Django CookieCutter)
- project template to quickly get the development environment up and running. 
+ project template to quickly get the development environment up and running.
 
 
 # Setting Up Local Development Environment
-The following steps provide an example on how to configure this project for local development.  It assumes the user: 
+The following steps provide an example on how to configure this project for local development.  It assumes the user:
  - is familiar with Python virtual environments and their setup
  - is familiar with Django and it's configuration/dependencies
  - is familiar with setting up a local postgres database
@@ -53,7 +53,7 @@ The following steps provide an example on how to configure this project for loca
 **The following steps are an example of setting up a local environment on a linux (Ubuntu) based environment.**
 
 ```shell
-# 1. 
+# 1.
 # determine where you want to install the project code base and navigate to that directory
 cd ~/work/virtualenvs/
 
@@ -78,7 +78,7 @@ pip install -r requirements/local.txt
 
 # 6.
 # setup environment variables which will be required for running
-# an example env variable file is located in .env_example   
+# an example env variable file is located in .env_example
 # copy that to .env and update/modify as appropriate
 cp .env_example .env
 
@@ -96,10 +96,16 @@ python manage.py migrate
 # fill out the required information as prompted on the command line
 python manage.py createsuperuser
 
-# 10. 
+# 10.
 # run django runserver and load the app in a web browser
 # the website will be running on:  http://localhost:8000
 python manage.py runserver
+
+
+# 11
+# install pre-commit so it is setup for commit checking
+pre-commit install
+
 
 ```
 

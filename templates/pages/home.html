@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+  <h2 class="text-center">Welcome to Rock, Paper, and Scissors</h2>
+  <div class="row">
+    <div class="col-4 text-center">
+      <i class="fa-regular fa-hand-back-fist fa-10x" title="Rock"></i>
+    </div>
+    <div class="col-4 text-center">
+      <i class="fa-regular fa-hand fa-10x" title="Paper"></i>
+    </div>
+    <div class="col-4 text-center">
+      <i class="fa-regular fa-hand-peace fa-10x" title="Scissors"></i>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <a href="{% url 'gameplay:index' %}" class="btn btn-primary btn-large btn-block">Shall We Play A Game?</a>
+  </div>
 {% endblock content %}

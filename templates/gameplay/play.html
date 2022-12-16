@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h3>
+    {% if game.game_winner_info is not None %}
+      You played
+    {% else %}
+      Your are playing
+    {% endif %}
+    a {{ game.get_game_type_display }} Game
+  </h3>
+
+  {% if game_winner_info is not None %}
+    <div class="alert alert-success">
+      {% if game_winner_info.user == request.user %}
+        Congratulations! You won this game!
+      {% else %}
+        We're sorry, {{ game_winner_info.name }} won this game.
+      {% endif %}
+    </div>
+  {% else %}
+    {% if game.which_players_turn is None or game.which_players_turn.user == request.user %}
+      <form id="id_play_form" action="{% url 'gameplay:play' game.id %}" method="POST">{% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-primary btn-sm" type="submit">Submit Turn</button>
+      </form>
+    {% else %}
+      <div class="alert alert-info">The second player has not yet played their turn.</div>
+    {% endif %}
+  {% endif %}
+
+  {% if game.turns.all %}
+    <hr />
+    <h5 class="mb-0">Past Turns</h5>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Turn Started At (UTC)</th>
+          <th>
+            {% if game.player_one == request.user %}
+              You
+            {% else %}
+              Player One
+            {% endif %}
+            Played
+          </th>
+          <th>
+            {% if game.player_two == request.user %}
+              You
+            {% elif game.player_two is None %}
+              Computer
+            {% else %}
+              Player Two
+            {% endif %}
+            Played
+          </th>
+          <th>
+            Result
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for turn in game.turns.all %}
+        <tr>
+          <td>{{ turn.created_at }}</td>
+          <td>{{ turn.get_player_one_choice_display|default:"Waiting" }}</td>
+          <td>{{ turn.get_player_two_choice_display|default:"Waiting" }}</td>
+          <td>{{ turn.get_turn_result_display|default:"" }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+  <hr />
+  <a href="{% url 'gameplay:index' %}" class="btn btn-warning">Back to Game Home</a>
+{% endblock %}

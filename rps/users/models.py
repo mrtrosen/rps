@@ -24,3 +24,23 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+    @property
+    def past_games(self):
+        """Return a query set of all the games played by this user
+        :return: QuerySet
+        """
+        as_player_one = self.games_as_player_one.all()
+        as_player_two = self.games_as_player_two.all()
+
+        # now that we have them all, sort them by descending created_at
+        all_games = (as_player_one | as_player_two).order_by("-created_at")
+
+        return all_games
+
+    @property
+    def winning_games(self):
+        """Return a list of games this user has won
+        :return: QuerySet
+        """
+        return self.past_games.filter(winner=self)
