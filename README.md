@@ -14,14 +14,22 @@ This is a web based implementation of a two player game of rock, paper, scissors
 - [x] Update Django to 4.1 version (Django Cookiecutter still utilizes 4.0 release)
 - [x] Validate base project setup is completed and properly runs locally
 - [x] Determine gameplay strategy and document steps
-- [ ] Setup django app for RPS views
-- [ ] Create Single User Gameplay (Player vs. Computer)
+- [x] Setup django app for RPS views
+- [x] Create Single User Gameplay (Player vs. Computer)
 - [ ] Create Player Versus Player Gameplay - 2 Players - Simple Mode (both users on same browser window)
 - [ ] Create Player Versus Player Gameplay - 2 Players - Advanced Mode (Player Invite / Game Code Entry / etc)
 - [ ] Update django models to allow for user game history saving
 - [ ] (Future) Create Player Versus Player Gameplay - 2 Players - Simple Mode (both users on same browser window)
 - [ ] (Future) Create Player Versus Player Gameplay - > 2 Players - Advanced Mode (Player Invite / Game Code Entry / etc)
 
+# Project Thoughts
+ - The decision to use the computer as a non-user is probably not the best approach. I would change out this decision and 
+   create a user account for the computer so there is less complexity in the code for determining if there is a 
+   real second player or not.
+ - Adding additional javascript functionality using Vue.js would make the pages more dynamic, allowing for a more modern 
+   web experience but was left out to worry more about the initial game play
+ - The design of the site is purposely left using standard bootstrap css functionality - this was a quick to put-together
+   project that didn't warrant spending a lot of time building out a full game-play design
 
 # Project Thoughts / Considerations
 The game of rock-paper-scissors is a real-time game in which 2 or more users have an option to play either a Rock, Scissors, or Paper.
